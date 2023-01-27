@@ -23,7 +23,7 @@ public class Reservation {
 	private int roomId; 
 	
 	private String guestList; 
-	private Timestamp checkId; 
+	private Timestamp checkIn; 
 	private Timestamp checkOut; 
 	private double amount; 
 }

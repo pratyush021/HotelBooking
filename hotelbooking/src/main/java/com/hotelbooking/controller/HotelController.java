@@ -16,7 +16,7 @@ import com.hotelbooking.entity.Hotel;
 import com.hotelbooking.service.HotelService;
 
 @RestController
-public class hotelcontroller {
+public class HotelController {
 	
 	@Autowired
 	private HotelService hotelService; 
