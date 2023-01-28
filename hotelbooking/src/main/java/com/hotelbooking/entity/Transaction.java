@@ -16,6 +16,6 @@ public class Transaction {
 	
 	@Id
 	private int transactionId; 
-	private boolean amount; 
+	private double amount; 
 
 }
