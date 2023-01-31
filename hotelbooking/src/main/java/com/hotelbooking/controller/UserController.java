@@ -3,6 +3,9 @@ package com.hotelbooking.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,12 +23,31 @@ public class UserController {
 	
 	
 	@GetMapping("/user")
-	public List<User> getAllUser(){
-		return this.userService.getAllUser(); 
+	public ResponseEntity<List<User>> getAllUser() throws Exception {
+		List<User> userList = null; 
+		try {
+			userList =  this.userService.getAllUser();
+		} catch(Exception e) {
+			e.printStackTrace(); 
+		}
+		
+		return ResponseEntity.ok(userList); 
 	}
 	
 	@PostMapping("/addUser")
-	public User addUser(@RequestBody User user) {
-		return this.userService.addUser(user); 
+	public ResponseEntity<String> addUser(@RequestBody User user) throws Exception {
+		
+		if(user == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("user can not be null"); 
+		}
+		
+		try {
+			this.userService.addUser(user); 
+		} catch(Exception e) {
+			throw new Exception("Invalid user details");  
+		}
+		
+		return ResponseEntity.ok("user added"); 
+				
 	}
 }

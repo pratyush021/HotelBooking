@@ -23,6 +23,9 @@ public class RoomService {
 		return this.repository.save(room); 
 	}
 	
+	public List<Room> getByHotelId(int hotelId) {
+		return this.repository.getByHotelId(hotelId); 
+	}
 	
 	
 }

@@ -23,18 +23,24 @@ public class HotelController {
 	
 	@GetMapping("/getAllHotels")
 	@ResponseBody
-	public List<Hotel> getAllHotels() {
-		List<Hotel> res = this.hotelService.getAllhotel();
-		res.forEach(t ->{
-			System.out.println(t.toString());
-		}); 
-		return res; 
+	public ResponseEntity<List<Hotel>> getAllHotels() throws Exception{
+		List<Hotel> res = null; 
+		try {
+			 res = this.hotelService.getAllhotel();
+		} catch(Exception e) {
+			e.printStackTrace(); 
+		}
+		return ResponseEntity.ok(res); 
 	}
 	
 	@PostMapping("/addHotel")
-	public ResponseEntity<Hotel> addHotel(@RequestBody Hotel hotel) {
-		Hotel res = this.hotelService.addHotel(hotel); 
-		System.out.println(hotel.toString());
+	public ResponseEntity<Hotel> addHotel(@RequestBody Hotel hotel) throws Exception {
+		Hotel res = new Hotel(); 
+		try {
+			res = this.hotelService.addHotel(hotel); 
+		} catch(Exception e) {
+			e.printStackTrace(); 
+		}
 		return ResponseEntity.status(HttpStatus.OK).body(res);  
 	}
 }

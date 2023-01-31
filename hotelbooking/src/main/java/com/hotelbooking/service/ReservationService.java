@@ -22,4 +22,8 @@ public class ReservationService {
 		return this.repository.save(newReservation); 
 	}
 	
+	public List<Reservation> getByUserId(int userId) {
+		return this.repository.getByUserId(userId); 
+	}
+	
 }
